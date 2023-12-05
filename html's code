@@ -1,0 +1,42 @@
+<form [formGroup]="programmingForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name" />
+    <div *ngIf="formControls.name.touched && formControls.name.hasError('required')">Name is required.</div>
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input type="text" id="email" formControlName="email" />
+    <div *ngIf="formControls.email.touched && (formControls.email.hasError('required') || formControls.email.hasError('email'))">Enter a valid email address.</div>
+  </div>
+
+  <div>
+    <label for="languages">Programming Languages:</label>
+    <select id="languages" formControlName="languages" multiple>
+      <option value="JavaScript">JavaScript</option>
+      <option value="Python">Python</option>
+      <option value="Java">Java</option>
+      <option value="C++">C++</option>
+    </select>
+    <div *ngIf="formControls.languages.touched && formControls.languages.hasError('required')">Select at least one programming language.</div>
+  </div>
+
+  <div>
+    <label>Experience Level:</label>
+    <label><input type="radio" formControlName="experience" value="Beginner"> Beginner</label>
+    <label><input type="radio" formControlName="experience" value="Intermediate"> Intermediate</label>
+    <label><input type="radio" formControlName="experience" value="Advanced"> Advanced</label>
+    <div *ngIf="formControls.experience.touched && formControls.experience.hasError('required')">Select your experience level.</div>
+  </div>
+
+  <div>
+    <label for="projectDescription">Project Description:</label>
+    <textarea id="projectDescription" formControlName="projectDescription"></textarea>
+    <div *ngIf="formControls.projectDescription.touched && (formControls.projectDescription.hasError('required') || formControls.projectDescription.hasError('minlength'))">Project description must be at least 10 characters long.</div>
+  </div>
+
+  <div>
+    <button type="submit" [disabled]="programmingForm.invalid">Submit</button>
+  </div>
+</form>
